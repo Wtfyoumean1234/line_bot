@@ -154,8 +154,8 @@ def handle_message(event: MessageEvent):
     if usr_id not in user_ids:
         user_ids.add(usr_id)
         interval[usr_id]={
-            'hour':0,
-            'minute':1,
+            'hour':1,
+            'minute':0,
             'notmsg':"去讀書拉",
             'worktime':23,
             'endtime':8,
