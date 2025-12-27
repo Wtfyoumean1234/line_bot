@@ -113,7 +113,6 @@ def notifyreset(sche,usr_id):
     print("執行noti")
     setsche(runtime,noti_id,notifyreset,[sche,usr_id])
     if not is_job_scheduled(sche,anno_id):setsche(datetime.now(),anno_id,frequent_message,[sche,usr_id,0])
-    sche.print_jobs()
 
 def wakeup(sche,usr_id):
     notifyreset(sche,usr_id)
@@ -136,6 +135,16 @@ def frequent_message(sche,usr_id,count):
 def is_job_scheduled(sche, job_id:str)->bool:
     job=sche.get_job(job_id)
     return job is not None
+
+def setsche(date,job_id,func,args):
+    sche.add_job(
+        func=func,
+        trigger="date",
+        id=job_id,
+        run_date=date,
+        args=args
+    )
+    #sche.resume_job(job_id)
 
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event: MessageEvent):
@@ -257,16 +266,6 @@ def handle_message(event: MessageEvent):
                 messages=[TextMessage(text=reply_text)],
             )
         )
-
-def setsche(date,job_id,func,args):
-    sche.add_job(
-        func=func,
-        trigger="date",
-        id=job_id,
-        run_date=date,
-        args=args
-    )
-    #sche.resume_job(job_id)
 
 @app.route("/", methods=["GET"])
 def home():
