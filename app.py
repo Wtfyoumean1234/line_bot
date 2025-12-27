@@ -157,7 +157,6 @@ def handle_message(event: MessageEvent):
         setsche(inittime,noti_id,notifyreset,[sche,usr_id])
     interval[usr_id]['anno']=False
     intext=event.message.text
-    print(f"用戶 ID: {usr_id} 輸入 {intext}")
     curhr=datetime.now().hour
     worktime=interval[usr_id]['worktime']
     endtime=interval[usr_id]['endtime']
@@ -249,7 +248,8 @@ def handle_message(event: MessageEvent):
         else:
             if is_job_scheduled(sche,anno_id):sche.remove_job(anno_id)
             reply_text=talk3small[random.randint(0,len(talk3small)-1)]
-
+    print(f"用戶 ID: {usr_id} 輸入 {intext}")
+    
     with ApiClient(configuration) as api_client:
         messaging_api=MessagingApi(api_client)
         messaging_api.reply_message(
