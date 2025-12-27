@@ -110,7 +110,6 @@ def notifyreset(sche,usr_id):
     noti_id=f"{usr_id},notify"
     anno_id=f"{usr_id},annoy"
     interval[usr_id]['anno']=True
-    print("執行noti")
     setsche(runtime,noti_id,notifyreset,[sche,usr_id])
     if not is_job_scheduled(sche,anno_id):setsche(datetime.now(),anno_id,frequent_message,[sche,usr_id,0])
 
