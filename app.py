@@ -162,7 +162,7 @@ def handle_message(event: MessageEvent):
     endtime=interval[usr_id]['endtime']
     if (worktime>=endtime and (curhr>=worktime or curhr<=endtime)) or (worktime<endtime and (curhr>=worktime and curhr<=endtime)):
         reply_text="去睡覺"
-        intext=f"{usr_id} is the asshole who doesnt go to sleep at {datetime.now().hour}:{datetime.now().minute}"
+        intext+=f"，{usr_id}是個他媽的都{datetime.now().hour}點{datetime.now().minute}分了都不睡覺的弱智"
     else:
         reply_text="指令還沒設好;D"
         cs=intext.split()
@@ -246,7 +246,6 @@ def handle_message(event: MessageEvent):
                 case _ :
                     reply_text="非法指令，想知道可用指令請打/help"
         else:
-            if is_job_scheduled(sche,anno_id):sche.remove_job(anno_id)
             reply_text=talk3small[random.randint(0,len(talk3small)-1)]
     print(f"用戶 ID: {usr_id} 輸入 {intext}")
     
